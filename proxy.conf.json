@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://golf-courses-api.herokuapp.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  }
+}

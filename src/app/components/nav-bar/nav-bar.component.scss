@@ -1,4 +1,38 @@
-.appName {
-  width: 62%;
-  text-align: center;
+.navbarContainer {
+  display: flex;
+  margin: 0;
+}
+
+.mat-toolbar {
+  width: 100%;
+}
+
+.buttonDiv {
+  display: flex;
+  flex: 1;
+}
+
+.appNameDiv {
+  display: flex;
+  flex: 4;
+  justify-content: flex-start;
+}
+
+.material-icons {
+  font-size: 35px;
+}
+
+mat-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.mat-icon-button i,
+.mat-icon-button .mat-icon {
+  line-height: 35px;
+}
+
+div {
+  margin-left: 10px;
+  cursor: pointer;
 }
