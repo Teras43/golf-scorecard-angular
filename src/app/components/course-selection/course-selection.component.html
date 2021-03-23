@@ -1,1 +1,5 @@
-<p>course-selection works!</p>
+<mat-card>
+  <div *ngFor="let course of $courses | async">
+    {{ course[0].id }}
+  </div>
+</mat-card>
