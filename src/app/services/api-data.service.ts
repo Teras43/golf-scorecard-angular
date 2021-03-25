@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiReturnData } from '../interfaces';
 import { Observable } from 'rxjs';
+import { CourseReturnData } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ApiDataService {
 
   allCourses = 'http://golf-courses-api.herokuapp.com/courses';
+
   headers = new HttpHeaders()
     .set('content-type', 'application/json');
   
@@ -16,5 +18,9 @@ export class ApiDataService {
 
   getApiData = (): Observable<ApiReturnData> => (
     this.http.get<ApiReturnData>(this.allCourses, { 'headers': this.headers })
+  )
+
+  getSingleCourse = (courseId): Observable<CourseReturnData> => (
+    this.http.get<CourseReturnData>(this.allCourses + '/' + courseId, { 'headers': this.headers })
   )
 }

@@ -1,0 +1,23 @@
+<div class="singleCourseContainer">
+  <mat-card class="courseInfoCard">
+    <div class="courseInfoTitle">Course Information</div>
+    <div *ngIf="data" class="mainInfo">
+      <div class="nameCityState">
+        {{ data.name }}
+        {{ data.city }}
+        {{ data.stateOrProvince }}
+      </div>
+      <div class="addr1">
+        {{ data.addr1 }}
+      </div>
+      <div class="phone">
+        {{ data.phone }}
+      </div>
+      <div class="holeCount">
+        {{ data.holeCount }}
+      </div>
+      <img class="thumbnail" src="{{ data.thumbnail }}" />
+      <div class="teeTypes">Pro: {{ data.holes[0].teeBoxes[0].yards }}</div>
+    </div>
+  </mat-card>
+</div>

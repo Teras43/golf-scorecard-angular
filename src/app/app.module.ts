@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseSelectionComponent } from './components/course-selection/course-selection.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MaterialModule } from './modules/material.module';
+import { CourseInfoComponent } from './components/course-info/course-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseSelectionComponent,
-    NavBarComponent
+    NavBarComponent,
+    CourseInfoComponent,
   ],
   imports: [
     BrowserModule,

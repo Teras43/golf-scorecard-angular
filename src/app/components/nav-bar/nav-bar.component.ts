@@ -16,5 +16,4 @@ export class NavBarComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }
