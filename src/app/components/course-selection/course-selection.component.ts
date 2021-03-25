@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Courses } from 'src/app/interfaces/courses';
+import { Course } from 'src/app/interfaces';
 import { ApiDataService } from '../../services/api-data.service';
 
 @Component({
@@ -9,13 +8,13 @@ import { ApiDataService } from '../../services/api-data.service';
   styleUrls: ['./course-selection.component.scss']
 })
 export class CourseSelectionComponent implements OnInit {
-  $courses: Observable<Courses[]>
+  courses: Course[] = []
 
   constructor(private apiData: ApiDataService) { }
 
   ngOnInit(): void {
-    this.$courses = this.apiData.getApiData()
-    console.log(this.$courses)
+    this.apiData.getApiData().subscribe(res => {
+      this.courses = res.courses
+    })
   }
-
 }

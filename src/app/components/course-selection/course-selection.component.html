@@ -1,5 +1,8 @@
 <mat-card>
-  <div *ngFor="let course of $courses | async">
-    {{ course[0].id }}
+  <div *ngFor="let course of courses" class="courseDiv">
+    <img src="{{ course.image }}" />
+    <div class="courseName">
+      {{ course.name }}
+    </div>
   </div>
 </mat-card>
