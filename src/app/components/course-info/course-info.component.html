@@ -13,11 +13,48 @@
       <div class="phone">
         {{ data.phone }}
       </div>
-      <div class="holeCount">
-        {{ data.holeCount }}
-      </div>
+      <div class="holeCount">Holes: {{ data.holeCount }}</div>
       <img class="thumbnail" src="{{ data.thumbnail }}" />
-      <div class="teeTypes">Pro: {{ data.holes[0].teeBoxes[0].yards }}</div>
+      <div class="teeTypeTitle">TeeTypes:</div>
+      <div class="yardageContainer">
+        <div class="teeTypes">Pro Yardage: {{ getYardage("pro") }}</div>
+        <div class="teeTypes">
+          Champion Yardage: {{ getYardage("champion") }}
+        </div>
+        <div class="teeTypes">Men Yardage: {{ getYardage("men") }}</div>
+        <div class="teeTypes">Women Yardage: {{ getYardage("women") }}</div>
+      </div>
+    </div>
+    <div class="bottomSection">
+      <div class="playerList">Player List</div>
+      <div id="players" class="players"></div>
+      <div id="errorMsgName" class="text-danger"></div>
+      <div class="addPlayers">
+        <div class="playerName">
+          <input
+            id="nameInput"
+            type="text"
+            placeholder="Player Name"
+            onkeydown="addPlayers(event)"
+          />
+        </div>
+        <div class="buttonDiv">
+          <button
+            type="button"
+            class="addPlayerBtn btn-sm btn-primary"
+            onclick="addPlayers(event)"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="startBtn btn-sm btn-primary"
+        onclick="startGame()"
+      >
+        Start!
+      </button>
     </div>
   </mat-card>
 </div>
