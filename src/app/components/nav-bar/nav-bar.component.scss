@@ -1,40 +1,42 @@
 .navbarContainer {
   display: flex;
   margin: 0;
-}
 
-.mat-toolbar {
-  width: 100%;
-  background-color: #4381c1;
-  border-bottom: 3px solid black;
-}
+  .mat-toolbar {
+    display: flex;
+    width: 100%;
+    background-color: #4381c1;
+    border-bottom: 3px solid black;
+    justify-content: space-between;
+  }
 
-.buttonDiv {
-  display: flex;
-  flex: 1;
-}
+  // .buttonDiv {
+  //   display: flex;
+  //   flex: 1;
+  // }
 
-.appNameDiv {
-  display: flex;
-  flex: 4;
-  justify-content: flex-start;
-}
+  // .appNameDiv {
+  //   display: flex;
+  //   flex: 4;
+  //   justify-content: flex-start;
+  // }
 
-.material-icons {
-  font-size: 35px;
-}
+  .material-icons {
+    font-size: 35px;
+  }
 
-mat-icon {
-  width: 35px;
-  height: 35px;
-}
+  mat-icon {
+    width: 35px;
+    height: 35px;
+  }
 
-.mat-icon-button i,
-.mat-icon-button .mat-icon {
-  line-height: 35px;
-}
+  .mat-icon-button i,
+  .mat-icon-button .mat-icon {
+    line-height: 35px;
+  }
 
-div {
-  margin-left: 10px;
-  cursor: pointer;
+  div {
+    margin-right: 18px;
+    cursor: pointer;
+  }
 }

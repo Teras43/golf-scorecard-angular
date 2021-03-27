@@ -10,6 +10,7 @@ import { CourseSelectionComponent } from './components/course-selection/course-s
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MaterialModule } from './modules/material.module';
 import { CourseInfoComponent } from './components/course-info/course-info.component';
+import { ScorecardComponent } from './components/scorecard/scorecard.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CourseInfoComponent } from './components/course-info/course-info.compon
     CourseSelectionComponent,
     NavBarComponent,
     CourseInfoComponent,
+    ScorecardComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,23 +26,31 @@
       </div>
     </div>
     <div class="bottomSection">
-      <div class="playerList">Player List</div>
-      <div id="players" class="players"></div>
-      <div id="errorMsgName" class="text-danger"></div>
+      <div class="playerList">Player List:</div>
+      <div *ngFor="let player of players" id="players" class="players">
+        {{ player.name }}
+      </div>
+      <mat-error *ngIf="playerName.hasError('duplicate')">
+        Duplicate Name
+      </mat-error>
+      <mat-error *ngIf="playerName.hasError('full')">
+        Player Roster Full!
+      </mat-error>
       <div class="addPlayers">
         <div class="playerName">
           <input
             id="nameInput"
             type="text"
             placeholder="Player Name"
-            onkeydown="addPlayers(event)"
+            [formControl]="playerName"
           />
         </div>
         <div class="buttonDiv">
           <button
             type="button"
             class="addPlayerBtn btn-sm btn-primary"
-            onclick="addPlayers(event)"
+            (click)="addPlayers($event)"
+            [disabled]="playerName.hasError('duplicate') || players.length > 4"
           >
             Add
           </button>
@@ -51,7 +59,7 @@
       <button
         type="button"
         class="startBtn btn-sm btn-primary"
-        onclick="startGame()"
+        (click)="startGame(cardId)"
       >
         Start!
       </button>
