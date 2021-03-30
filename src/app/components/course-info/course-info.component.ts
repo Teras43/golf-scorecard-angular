@@ -5,12 +5,7 @@ import { ApiDataService } from 'src/app/services/api-data.service';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { DataShareService } from 'src/app/services/data-share.service';
 
-type TeeTypes = {
-  "pro": number,
-  "champion": number,
-  "men": number,
-  "women": number
-}
+
 
 @Component({
   selector: 'app-course-info',
@@ -20,10 +15,10 @@ type TeeTypes = {
 export class CourseInfoComponent implements OnInit {
   data: CourseData;
   id: string;
-  holeToIndex: TeeTypes = {} as TeeTypes;
   playerName = new FormControl('', this.nameVal());
   playerId = 0;
   cardId = 0;
+  maxPlayers = 4;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -39,7 +34,7 @@ export class CourseInfoComponent implements OnInit {
       this.setData.setData(res.data);
       // console.log(this.data);
       res.data.holes[0].teeBoxes.forEach((v, i) => {
-        this.holeToIndex[v.teeType] = i
+        this.setData.holeToIndex[v.teeType] = i
       });
     })
   }
@@ -59,14 +54,6 @@ export class CourseInfoComponent implements OnInit {
       }
       return error;
     };
-  }
-
-  getYardage = (type: "pro" | "champion" | "men" | "women"): string => {
-    const index = this.holeToIndex[type]
-    if (index === undefined ) return "N/A"
-    let total = 0
-    this.data.holes.forEach(v => total += v.teeBoxes[index].yards)
-    return total.toString()
   }
 
   addPlayers = ($event): void => {

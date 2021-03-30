@@ -1,25 +1,16 @@
 .navbarContainer {
   display: flex;
+  width: 100%;
   margin: 0;
 
   .mat-toolbar {
     display: flex;
     width: 100%;
-    background-color: #4381c1;
+    color: #e1e2e3;
+    background-color: #43515b;
     border-bottom: 3px solid black;
     justify-content: space-between;
   }
-
-  // .buttonDiv {
-  //   display: flex;
-  //   flex: 1;
-  // }
-
-  // .appNameDiv {
-  //   display: flex;
-  //   flex: 4;
-  //   justify-content: flex-start;
-  // }
 
   .material-icons {
     font-size: 35px;

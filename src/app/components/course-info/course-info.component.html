@@ -17,16 +17,20 @@
       <img class="thumbnail" src="{{ data.thumbnail }}" />
       <div class="teeTypeTitle">TeeTypes:</div>
       <div class="yardageContainer">
-        <div class="teeTypes">Pro Yardage: {{ getYardage("pro") }}</div>
+        <div class="teeTypes">Pro Yardage: {{ setData.getYardage("pro") }}</div>
         <div class="teeTypes">
-          Champion Yardage: {{ getYardage("champion") }}
+          Champion Yardage: {{ setData.getYardage("champion") }}
         </div>
-        <div class="teeTypes">Men Yardage: {{ getYardage("men") }}</div>
-        <div class="teeTypes">Women Yardage: {{ getYardage("women") }}</div>
+        <div class="teeTypes">Men Yardage: {{ setData.getYardage("men") }}</div>
+        <div class="teeTypes">
+          Women Yardage: {{ setData.getYardage("women") }}
+        </div>
       </div>
     </div>
     <div class="bottomSection">
-      <div class="playerList">Player List (4):</div>
+      <div class="playerList">
+        Player List ({{ maxPlayers - setData.players.length }}):
+      </div>
       <div *ngFor="let player of setData.players" id="players" class="players">
         {{ player.name }}
       </div>
@@ -42,6 +46,7 @@
             id="nameInput"
             type="text"
             placeholder="Player Name"
+            (keydown)="addPlayers($event)"
             [formControl]="playerName"
           />
         </div>

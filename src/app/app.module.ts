@@ -11,6 +11,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MaterialModule } from './modules/material.module';
 import { CourseInfoComponent } from './components/course-info/course-info.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { ScorecardComponent } from './components/scorecard/scorecard.component';
     MaterialModule,
     FormsModule,
     HttpClientModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
