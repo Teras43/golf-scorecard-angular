@@ -17,13 +17,21 @@
       <img class="thumbnail" src="{{ data.thumbnail }}" />
       <div class="teeTypeTitle">TeeTypes:</div>
       <div class="yardageContainer">
-        <div class="teeTypes">Pro Yardage: {{ setData.getYardage("pro") }}</div>
         <div class="teeTypes">
-          Champion Yardage: {{ setData.getYardage("champion") }}
+          Pro Yardage: <br />
+          {{ setData.getYardage("pro") }}
         </div>
-        <div class="teeTypes">Men Yardage: {{ setData.getYardage("men") }}</div>
         <div class="teeTypes">
-          Women Yardage: {{ setData.getYardage("women") }}
+          Champion Yardage: <br />
+          {{ setData.getYardage("champion") }}
+        </div>
+        <div class="teeTypes">
+          Men Yardage: <br />
+          {{ setData.getYardage("men") }}
+        </div>
+        <div class="teeTypes">
+          Women Yardage: <br />
+          {{ setData.getYardage("women") }}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseData, Players } from 'src/app/interfaces';
+import { CourseData } from 'src/app/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiDataService } from 'src/app/services/api-data.service';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
@@ -26,6 +26,8 @@ export class CourseInfoComponent implements OnInit {
     private router: Router,
     public setData: DataShareService,
   ) { }
+
+  // Issue when loading one of first two courses, then go back and load last course, display of "Pro" yardage is incorrect.
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get("id");
