@@ -1,1 +1,67 @@
-<p>scorecard works!</p>
+<div class="scorecardContainer">
+  <mat-card class="scoreCard">
+    <div class="teeChange">
+      <div>Change Tee:</div>
+      <select>
+        <option>Pro</option>
+        <option>Champion</option>
+        <option>Men</option>
+        <option>Women</option>
+      </select>
+    </div>
+    <table class="scorecardTable">
+      <tr>
+        <th>Hole</th>
+        <th>Par</th>
+        <th>HDCP</th>
+        <th>Yards</th>
+        <th *ngFor="let player of players">{{ player.name }}</th>
+      </tr>
+      <tr *ngFor="let hole of data.holes | slice: 0:9">
+        <td class="holeCell">{{ hole.hole }}</td>
+        <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
+        <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
+        <td class="yardCell">Yds</td>
+        <td *ngFor="let player of players">
+          <input class="playerInput" />
+        </td>
+      </tr>
+      <tr>
+        <td>Out</td>
+        <td>x</td>
+        <td>Out</td>
+        <td>y</td>
+        <td *ngFor="let player of players">
+          <input value="0" class="playerInput" />
+        </td>
+      </tr>
+      <tr *ngFor="let hole of data.holes | slice: 9:18">
+        <td class="holeCell">{{ hole.hole }}</td>
+        <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
+        <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
+        <td class="yardCell">Yds</td>
+        <td *ngFor="let player of players">
+          <input class="playerInput" />
+        </td>
+      </tr>
+      <tr>
+        <td>In</td>
+        <td>x</td>
+        <td>In</td>
+        <td>y</td>
+        <td *ngFor="let player of players">
+          <input value="0" class="playerInput" />
+        </td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>x</td>
+        <td>Total</td>
+        <td>y</td>
+        <td *ngFor="let player of players">
+          <input value="0" class="playerInput" />
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+</div>

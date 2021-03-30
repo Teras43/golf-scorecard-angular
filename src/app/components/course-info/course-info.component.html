@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="bottomSection">
-      <div class="playerList">Player List:</div>
-      <div *ngFor="let player of players" id="players" class="players">
+      <div class="playerList">Player List (4):</div>
+      <div *ngFor="let player of setData.players" id="players" class="players">
         {{ player.name }}
       </div>
       <mat-error *ngIf="playerName.hasError('duplicate')">
@@ -50,7 +50,9 @@
             type="button"
             class="addPlayerBtn btn-sm btn-primary"
             (click)="addPlayers($event)"
-            [disabled]="playerName.hasError('duplicate') || players.length > 4"
+            [disabled]="
+              playerName.hasError('duplicate') || setData.players.length >= 4
+            "
           >
             Add
           </button>

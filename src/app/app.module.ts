@@ -26,7 +26,7 @@ import { ScorecardComponent } from './components/scorecard/scorecard.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

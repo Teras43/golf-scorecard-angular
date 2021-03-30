@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseData, Players } from 'src/app/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiDataService } from 'src/app/services/api-data.service';
-import { Observable } from 'rxjs';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { ScorecardComponent } from '../scorecard/scorecard.component';
+import { DataShareService } from 'src/app/services/data-share.service';
 
 type TeeTypes = {
   "pro": number,
@@ -22,7 +21,6 @@ export class CourseInfoComponent implements OnInit {
   data: CourseData;
   id: string;
   holeToIndex: TeeTypes = {} as TeeTypes;
-  players: Players[] = [];
   playerName = new FormControl('', this.nameVal());
   playerId = 0;
   cardId = 0;
@@ -30,14 +28,16 @@ export class CourseInfoComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private apiData: ApiDataService,
-    private router: Router
+    private router: Router,
+    public setData: DataShareService,
   ) { }
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get("id");
     this.apiData.getSingleCourse(this.id).subscribe(res => {
       this.data = res.data
-      console.log(this.data);
+      this.setData.setData(res.data);
+      // console.log(this.data);
       res.data.holes[0].teeBoxes.forEach((v, i) => {
         this.holeToIndex[v.teeType] = i
       });
@@ -47,13 +47,13 @@ export class CourseInfoComponent implements OnInit {
   nameVal(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       let error = null;
-      if (this.players && this.players.length) {
-          this.players.forEach(employee => {
+      if (this.setData.players && this.setData.players.length) {
+          this.setData.players.forEach(employee => {
               if (employee.name.toLowerCase() === control.value.toLowerCase()) {
                   error = {duplicate: true};
               }
           });
-          if (this.players.length > 4) {
+          if (this.setData.players.length > 4) {
             error = {full: true};
           }
       }
@@ -63,7 +63,7 @@ export class CourseInfoComponent implements OnInit {
 
   getYardage = (type: "pro" | "champion" | "men" | "women"): string => {
     const index = this.holeToIndex[type]
-    if (index === undefined ) return "No TeeType"
+    if (index === undefined ) return "N/A"
     let total = 0
     this.data.holes.forEach(v => total += v.teeBoxes[index].yards)
     return total.toString()
@@ -72,11 +72,10 @@ export class CourseInfoComponent implements OnInit {
   addPlayers = ($event): void => {
     if($event.type === 'keydown' && $event.keyCode !== 13) return;
     if(this.playerName.value === null || this.playerName.value === undefined) return;
-    // if(this.players.length > 4) 
     if (this.playerName.value) {
       this.playerId++;
 
-      this.players.push({
+      this.setData.players.push({
         id: this.playerId,
         name: this.playerName.value,
         score: {
@@ -101,12 +100,12 @@ export class CourseInfoComponent implements OnInit {
         }
       });
       this.playerName.setValue('');
-      console.log(this.players);
+      console.log(this.setData.players);
     }
   }
 
   startGame = (cardId): void => {
-    if (this.players.length >= 1){
+    if (this.setData.players.length >= 1){
       cardId++
       this.router.navigate([`./scorecard/${cardId}`])
     }

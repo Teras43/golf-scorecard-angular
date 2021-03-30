@@ -1,0 +1,49 @@
+.scorecardContainer {
+  height: 90%;
+
+  .scoreCard {
+    height: 100%;
+    max-width: 100%;
+    font-size: 14px;
+
+    .teeChange {
+      margin-bottom: 5px;
+    }
+
+    .scorecardTable {
+      height: 95%;
+
+      th {
+        border: 1px solid black;
+      }
+
+      tr,
+      td {
+        margin: 0;
+        border: 1px solid black;
+        text-align: center;
+      }
+    }
+
+    .playerInput {
+      width: 63px;
+      border: none;
+    }
+
+    .playerInput:focus {
+      outline: none;
+    }
+
+    .holeCell {
+      width: 10px;
+    }
+
+    .parCell {
+      width: 10px;
+    }
+
+    .hcpCell {
+      width: 10px;
+    }
+  }
+}
