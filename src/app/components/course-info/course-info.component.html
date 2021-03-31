@@ -43,7 +43,8 @@
         {{ player.name }}
       </div>
       <mat-error *ngIf="playerName.hasError('duplicate')">
-        Duplicate Name
+        Same Name <br />
+        Adding Number...
       </mat-error>
       <div class="addPlayers">
         <div class="playerName">
@@ -60,9 +61,7 @@
             type="button"
             class="addPlayerBtn btn-sm btn-primary"
             (click)="addPlayers($event)"
-            [disabled]="
-              playerName.hasError('duplicate') || setData.players.length >= 4
-            "
+            [disabled]="setData.players.length >= 4"
           >
             Add
           </button>

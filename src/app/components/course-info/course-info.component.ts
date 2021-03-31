@@ -4,13 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiDataService } from 'src/app/services/api-data.service';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { DataShareService } from 'src/app/services/data-share.service';
+import { PlayerNamePipePipe } from 'src/app/pipes/player-name-pipe.pipe';
 
 
 
 @Component({
   selector: 'app-course-info',
   templateUrl: './course-info.component.html',
-  styleUrls: ['./course-info.component.scss']
+  styleUrls: ['./course-info.component.scss'],
+  providers: [PlayerNamePipePipe]
 })
 export class CourseInfoComponent implements OnInit {
   data: CourseData;
@@ -25,6 +27,7 @@ export class CourseInfoComponent implements OnInit {
     private apiData: ApiDataService,
     private router: Router,
     public setData: DataShareService,
+    private namePipe: PlayerNamePipePipe
   ) { }
 
   // Issue when loading one of first two courses, then go back and load last course, display of "Pro" yardage is incorrect.
@@ -45,14 +48,12 @@ export class CourseInfoComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: any } | null => {
       let error = null;
       if (this.setData.players && this.setData.players.length) {
-          this.setData.players.forEach(employee => {
-              if (employee.name.toLowerCase() === control.value.toLowerCase()) {
-                  error = {duplicate: true};
-              }
-          });
-          if (this.setData.players.length > 4) {
-            error = {full: true};
+        this.setData.players.forEach(player => {
+          if (player.name.toLowerCase() === control.value.toLowerCase()) {
+            error = {duplicate: true};
+            player.name = this.namePipe.transform(player.name);
           }
+        });
       }
       return error;
     };
@@ -63,7 +64,6 @@ export class CourseInfoComponent implements OnInit {
     if(this.playerName.value === null || this.playerName.value === undefined) return;
     if (this.playerName.value) {
       this.playerId++;
-
       this.setData.players.push({
         id: this.playerId,
         name: this.playerName.value,

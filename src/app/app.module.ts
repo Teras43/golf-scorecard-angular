@@ -12,6 +12,7 @@ import { MaterialModule } from './modules/material.module';
 import { CourseInfoComponent } from './components/course-info/course-info.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { PlayerNamePipePipe } from './pipes/player-name-pipe.pipe';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NavBarComponent,
     CourseInfoComponent,
     ScorecardComponent,
+    PlayerNamePipePipe,
   ],
   imports: [
     BrowserModule,
