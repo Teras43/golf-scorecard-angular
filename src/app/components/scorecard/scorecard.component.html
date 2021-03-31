@@ -33,7 +33,7 @@
         <td *ngFor="let player of players">
           <input
             class="playerInput"
-            (keydown)="addScore(player.name, $event.key, hole.hole)"
+            (blur)="addScore(player.name, $event.target.value, hole.hole)"
           />
         </td>
       </tr>
@@ -58,7 +58,7 @@
         <td *ngFor="let player of players">
           <input
             class="playerInput"
-            (keydown)="addScore(player.name, $event.key, hole.hole)"
+            (blur)="addScore(player.name, $event.target.value, hole.hole)"
           />
         </td>
       </tr>

@@ -9,14 +9,14 @@ import { teeTypes } from '../../interfaces';
 })
 export class ScorecardComponent implements OnInit {
   public data = undefined;
-  players = this.getData.players;
+  public selectedTeeType;
   public teeIndex;
+  players = this.getData.players;
   outTotalYards = 0;
   inTotalYards = 0;
   outTotalPar = 0;
   inTotalPar = 0;
   selectedValue = "pro"
-  public selectedTeeType;
   teeTypesPro: teeTypes[] = [
     {
       index: 0,
@@ -116,15 +116,24 @@ export class ScorecardComponent implements OnInit {
   }
 
   addScore = (playerName, event, holeNum): any => {
+    if (event === "") {
+      event = 0;
+    }
     this.setData.players.forEach((name) => {
+      let playerScores = Object.keys(name.score);
       if (playerName === name.name) {
+        name.score.total = 0;
+        name.score.outTotal = 0;
+        name.score.inTotal = 0;
         name.score["hole" + holeNum] = parseInt(event);
-        if (holeNum <= 9) {
-          name.score.outTotal += name.score["hole" + holeNum];
-        }
-        if (holeNum > 9) {
-          name.score.inTotal += name.score["hole" + holeNum];
-        }
+        playerScores.forEach((hole, i) => {
+          if (i < 9 && name.score[hole] !== undefined) {
+            name.score.outTotal += name.score[hole];
+          }
+          if (i > 8 && i <18 && name.score[hole] !== undefined) {
+            name.score.inTotal += name.score[hole];
+          }
+        })
         name.score.total = name.score.outTotal + name.score.inTotal;
       }
     })
