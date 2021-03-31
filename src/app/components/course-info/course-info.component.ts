@@ -86,6 +86,9 @@ export class CourseInfoComponent implements OnInit {
           hole16: 0,
           hole17: 0,
           hole18: 0,
+          outTotal: 0,
+          inTotal: 0,
+          total: 0,
         }
       });
       this.playerName.setValue('');

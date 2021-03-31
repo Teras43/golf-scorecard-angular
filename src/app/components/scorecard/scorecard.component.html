@@ -3,7 +3,11 @@
     <div class="teeChange">
       <mat-form-field id="teeDropDown">
         <mat-label>Change Tee:</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="teeType">
+        <mat-select
+          [(ngModel)]="selectedValue"
+          name="teeType"
+          (selectionChange)="setYardage()"
+        >
           <mat-option
             *ngFor="let teeType of selectedTeeType"
             [value]="teeType.name"
@@ -25,45 +29,63 @@
         <td class="holeCell">{{ hole.hole }}</td>
         <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
         <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
-        <td class="yardCell">{{ hole.teeBoxes[0].yards }}</td>
+        <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
         <td *ngFor="let player of players">
-          <input class="playerInput" />
+          <input
+            class="playerInput"
+            (keydown)="addScore(player.name, $event.key, hole.hole)"
+          />
         </td>
       </tr>
       <tr>
         <td>Out</td>
-        <td>x</td>
+        <td>{{ outTotalPar }}</td>
         <td>Out</td>
         <td>{{ outTotalYards }}</td>
         <td *ngFor="let player of players">
-          <input value="0" class="playerInput" />
+          <input
+            value="{{ player.score.outTotal }}"
+            class="playerInput"
+            disabled
+          />
         </td>
       </tr>
       <tr *ngFor="let hole of data.holes | slice: 9:18">
         <td class="holeCell">{{ hole.hole }}</td>
         <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
         <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
-        <td class="yardCell">Yds</td>
+        <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
         <td *ngFor="let player of players">
-          <input class="playerInput" />
+          <input
+            class="playerInput"
+            (keydown)="addScore(player.name, $event.key, hole.hole)"
+          />
         </td>
       </tr>
       <tr>
         <td>In</td>
-        <td>x</td>
+        <td>{{ inTotalPar }}</td>
         <td>In</td>
         <td>{{ inTotalYards }}</td>
         <td *ngFor="let player of players">
-          <input value="0" class="playerInput" />
+          <input
+            value="{{ player.score.inTotal }}"
+            class="playerInput"
+            disabled
+          />
         </td>
       </tr>
       <tr>
         <td>Total</td>
-        <td>x</td>
+        <td>{{ outTotalPar + inTotalPar }}</td>
         <td>Total</td>
-        <td>y</td>
+        <td>{{ outTotalYards + inTotalYards }}</td>
         <td *ngFor="let player of players">
-          <input value="0" class="playerInput" />
+          <input
+            value="{{ player.score.total }}"
+            class="playerInput"
+            disabled
+          />
         </td>
       </tr>
     </table>

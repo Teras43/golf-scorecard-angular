@@ -20,5 +20,8 @@ export interface Players {
     hole16: number,
     hole17: number,
     hole18: number,
+    outTotal: number,
+    inTotal: number,
+    total: number
   }
 }
