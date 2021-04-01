@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataShareService } from 'src/app/services/data-share.service';
 import { teeTypes } from '../../interfaces';
 
@@ -59,7 +60,7 @@ export class ScorecardComponent implements OnInit {
 
   constructor(
     private getData: DataShareService,
-    public setData: DataShareService
+    public setData: DataShareService,
   ) { }
 
   ngOnInit(): void {

@@ -64,7 +64,6 @@ export class CourseInfoComponent implements OnInit {
     if(this.playerName.value === null || this.playerName.value === undefined) return;
     if (this.playerName.value) {
       this.playerId++;
-      // this.playerName.setValue(this.namePipe.transform(this.playerName.value));
       this.setData.players.forEach(player => {
         if (this.playerName.value == player.name) {
           this.playerName.setValue(this.namePipe.transform(this.playerName.value))
