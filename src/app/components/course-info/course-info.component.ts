@@ -30,15 +30,16 @@ export class CourseInfoComponent implements OnInit {
     private namePipe: PlayerNamePipePipe
   ) { }
 
+  // vvv IMPORTANT vvv
   // Issue when loading one of first two courses, then go back and load last course, display of "Pro" yardage is incorrect.
+  // ^^^ IMPORTANT ^^^
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get("id");
     this.apiData.getSingleCourse(this.id).subscribe(res => {
       this.data = res.data
       this.setData.setData(res.data);
-      // console.log(this.data);
-      res.data.holes[0].teeBoxes.forEach((v, i) => {
+      this.data.holes[0].teeBoxes.forEach((v, i) => {
         this.setData.holeToIndex[v.teeType] = i
       });
     })
@@ -51,7 +52,6 @@ export class CourseInfoComponent implements OnInit {
         this.setData.players.forEach(player => {
           if (player.name.toLowerCase() === control.value.toLowerCase()) {
             error = {duplicate: true};
-            player.name = this.namePipe.transform(player.name);
           }
         });
       }
@@ -64,6 +64,12 @@ export class CourseInfoComponent implements OnInit {
     if(this.playerName.value === null || this.playerName.value === undefined) return;
     if (this.playerName.value) {
       this.playerId++;
+      // this.playerName.setValue(this.namePipe.transform(this.playerName.value));
+      this.setData.players.forEach(player => {
+        if (this.playerName.value == player.name) {
+          this.playerName.setValue(this.namePipe.transform(this.playerName.value))
+        }
+      })
       this.setData.players.push({
         id: this.playerId,
         name: this.playerName.value,
@@ -92,7 +98,6 @@ export class CourseInfoComponent implements OnInit {
         }
       });
       this.playerName.setValue('');
-      console.log(this.setData.players);
     }
   }
 

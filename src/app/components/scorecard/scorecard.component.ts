@@ -16,7 +16,7 @@ export class ScorecardComponent implements OnInit {
   inTotalYards = 0;
   outTotalPar = 0;
   inTotalPar = 0;
-  selectedValue = "pro"
+  selectedValue: string;
   teeTypesPro: teeTypes[] = [
     {
       index: 0,
@@ -73,16 +73,16 @@ export class ScorecardComponent implements OnInit {
   setYardage = (): any => {
     this.outTotalYards = 0;
     this.inTotalYards = 0;
-    if (this.selectedTeeType === this.teeTypesPro ) {
+    if (this.selectedTeeType == this.teeTypesPro ) {
       this.teeTypesPro.forEach(i => {
         if (i.name === this.selectedValue) {
           this.teeIndex = i.index;
           return this.teeIndex;
         }
       })
-    } else if (this.selectedTeeType === this.teeTypesNoPro) {
+    } else if (this.selectedTeeType == this.teeTypesNoPro) {
       this.teeTypesNoPro.forEach(i => {
-        if (i.viewName === this.selectedValue) {
+        if (i.name === this.selectedValue) {
           this.teeIndex = i.index;
           return this.teeIndex;
         }
@@ -100,8 +100,10 @@ export class ScorecardComponent implements OnInit {
   getTeeTypes = (): any => {
     if (this.data.holes[0].teeBoxes[0].teeType === "pro") {
       this.selectedTeeType = this.teeTypesPro;
+      this.selectedValue = "pro";
     } else {
       this.selectedTeeType = this.teeTypesNoPro;
+      this.selectedValue = "champion";
     }
   }
 

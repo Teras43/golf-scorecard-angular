@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/interfaces';
-import { CourseData } from 'src/app/interfaces';
 import { ApiDataService } from '../../services/api-data.service';
 import { Router } from '@angular/router';
 
