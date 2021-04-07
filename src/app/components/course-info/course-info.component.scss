@@ -28,7 +28,7 @@
     }
 
     .siteLink {
-      font-size: 20px;
+      font-size: 16px;
       margin-top: 10px;
     }
 
@@ -49,20 +49,31 @@
       justify-content: flex-end;
       text-align: center;
 
+      #nameInput {
+        height: 30px;
+      }
+
       .playerList {
         margin-bottom: 8px;
       }
 
       .players {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
       }
 
       .addPlayers {
         display: flex;
         margin-bottom: 5px;
+
+        mat-form-field {
+          height: 60px;
+          border-top: 0;
+        }
       }
 
       .buttonDiv {
+        display: flex;
+        align-items: center;
         margin-left: 5px;
       }
     }

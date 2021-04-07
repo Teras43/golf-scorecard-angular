@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataShareService } from 'src/app/services/data-share.service';
-import { teeTypes } from '../../interfaces';
+import { Players, teeTypes } from '../../interfaces';
+import { AngularFireService } from '../../services/angular-fire.service';
 
 @Component({
   selector: 'app-scorecard',
@@ -12,6 +14,7 @@ export class ScorecardComponent implements OnInit {
   public data = undefined;
   public selectedTeeType;
   public teeIndex;
+  player$: Observable<Players>;
   players = this.getData.players;
   outTotalYards = 0;
   inTotalYards = 0;
@@ -61,7 +64,10 @@ export class ScorecardComponent implements OnInit {
   constructor(
     private getData: DataShareService,
     public setData: DataShareService,
-  ) { }
+    public playerService: AngularFireService
+  ) { 
+    // this.player$ = this.playerService.getPlayerObservable();
+  }
 
   ngOnInit(): void {
     this.data = this.getData.getData();
@@ -69,6 +75,10 @@ export class ScorecardComponent implements OnInit {
     this.getTeeTypes();
     this.setYardage();
     this.getTotalPar();
+  }
+
+  savePlayer = (player) => {
+    this.playerService.savePlayer(player);
   }
 
   setYardage = (): any => {

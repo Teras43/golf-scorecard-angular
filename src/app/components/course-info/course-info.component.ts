@@ -5,6 +5,7 @@ import { ApiDataService } from 'src/app/services/api-data.service';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { DataShareService } from 'src/app/services/data-share.service';
 import { PlayerNamePipePipe } from 'src/app/pipes/player-name-pipe.pipe';
+import { AngularFireService } from 'src/app/services/angular-fire.service';
 
 
 
@@ -18,7 +19,6 @@ export class CourseInfoComponent implements OnInit {
   data: CourseData;
   id: string;
   playerName = new FormControl('', this.nameVal());
-  playerId = 0;
   cardId = 0;
   maxPlayers = 4;
 
@@ -27,7 +27,8 @@ export class CourseInfoComponent implements OnInit {
     private apiData: ApiDataService,
     private router: Router,
     public setData: DataShareService,
-    private namePipe: PlayerNamePipePipe
+    private namePipe: PlayerNamePipePipe,
+    private db: AngularFireService
   ) { }
 
   // vvv IMPORTANT vvv
@@ -62,15 +63,14 @@ export class CourseInfoComponent implements OnInit {
   addPlayers = ($event): void => {
     if($event.type === 'keydown' && $event.keyCode !== 13) return;
     if(this.playerName.value === null || this.playerName.value === undefined) return;
+    if(this.setData.players.length === 4) return;
     if (this.playerName.value) {
-      this.playerId++;
       this.setData.players.forEach(player => {
         if (this.playerName.value == player.name) {
           this.playerName.setValue(this.namePipe.transform(this.playerName.value))
         }
       })
       this.setData.players.push({
-        id: this.playerId,
         name: this.playerName.value,
         score: {
           hole1: 0,
@@ -105,5 +105,6 @@ export class CourseInfoComponent implements OnInit {
       cardId++
       this.router.navigate([`./scorecard/${cardId}`])
     }
+    this.db.saveGame(this.setData.players)
   }
 }

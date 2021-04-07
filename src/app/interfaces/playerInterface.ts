@@ -1,5 +1,4 @@
 export interface Players {
-  id: number
   name: string,
   score?: {
     hole1: number,

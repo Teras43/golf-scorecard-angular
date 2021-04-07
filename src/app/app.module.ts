@@ -13,6 +13,11 @@ import { CourseInfoComponent } from './components/course-info/course-info.compon
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { PlayerNamePipePipe } from './pipes/player-name-pipe.pipe';
+import { SaveGamesComponent } from './components/save-games/save-games.component';
+import { FirebaseDbComponent } from './components/firebase-db/firebase-db.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -23,6 +28,8 @@ import { PlayerNamePipePipe } from './pipes/player-name-pipe.pipe';
     CourseInfoComponent,
     ScorecardComponent,
     PlayerNamePipePipe,
+    SaveGamesComponent,
+    FirebaseDbComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,9 @@ import { PlayerNamePipePipe } from './pipes/player-name-pipe.pipe';
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    MatMenuModule
+    MatMenuModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

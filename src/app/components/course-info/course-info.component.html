@@ -15,7 +15,9 @@
       </div>
       <div class="holeCount">Holes: {{ data.holeCount }}</div>
       <img class="thumbnail" src="{{ data.thumbnail }}" />
-      <a href="data.website" class="siteLink">VISIT SITE</a>
+      <a mat-raised-button color="link" href="data.website" class="siteLink"
+        >Visit Site</a
+      >
       <div class="teeTypeTitle">TeeTypes:</div>
       <div class="yardageContainer">
         <div class="teeTypes">
@@ -49,26 +51,34 @@
       </mat-error>
       <div class="addPlayers">
         <div class="playerName">
-          <input
-            id="nameInput"
-            type="text"
-            placeholder="Player Name"
-            (keydown)="addPlayers($event)"
-            [formControl]="playerName"
-          />
+          <mat-form-field>
+            <mat-label>Add Players</mat-label>
+            <input
+              matInput
+              id="nameInput"
+              type="text"
+              placeholder="Player Name"
+              (keydown)="addPlayers($event)"
+              [formControl]="playerName"
+            />
+          </mat-form-field>
         </div>
         <div class="buttonDiv">
           <button
+            mat-mini-fab
+            color="primary"
             type="button"
             class="addPlayerBtn btn-sm btn-primary"
             (click)="addPlayers($event)"
             [disabled]="setData.players.length >= 4"
           >
-            Add
+            <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
       <button
+        mat-raised-button
+        color="primary"
         type="button"
         class="startBtn btn-sm btn-primary"
         (click)="startGame(cardId)"
