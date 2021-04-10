@@ -65,9 +65,7 @@ export class ScorecardComponent implements OnInit {
     private getData: DataShareService,
     public setData: DataShareService,
     public playerService: AngularFireService
-  ) { 
-    // this.player$ = this.playerService.getPlayerObservable();
-  }
+  ) { }
 
   ngOnInit(): void {
     this.data = this.getData.getData();

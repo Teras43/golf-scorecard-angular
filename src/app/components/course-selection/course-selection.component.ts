@@ -25,4 +25,12 @@ export class CourseSelectionComponent implements OnInit {
   selectCourse(courseId) {
     this.router.navigate([`/course-info/${courseId}`]);
   }
+
+  isLoaded = (): boolean => {
+    if (this.courses.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

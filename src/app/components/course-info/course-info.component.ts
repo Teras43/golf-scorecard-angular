@@ -102,7 +102,6 @@ export class CourseInfoComponent implements OnInit {
 
   startGame = (cardId): void => {
     if (this.setData.players.length >= 1){
-      cardId++
       this.router.navigate([`./scorecard/${cardId}`])
     }
     this.db.saveGame(this.setData.players)

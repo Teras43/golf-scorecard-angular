@@ -8,8 +8,14 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AngularFireService {
+  players: Observable<any>;
+  private playersRef: AngularFirestoreCollection<Players>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+  ) { 
+    this.playersRef = this.db.collection<Players>('saved-games');
+    this.players = this.playersRef.valueChanges();
   }
   gameId: string
 
@@ -18,20 +24,27 @@ export class AngularFireService {
     return throwError(error);
   }
 
-  players: Players
-
-  getPlayersObservable = (playerId: number): Observable<Players[]> => {
-    const filteredPlayers = this.db.collection('saved-games', ref => ref.where('id', '==', playerId));
-    return filteredPlayers.snapshotChanges().pipe(
+  getPlayersObservable = (): Observable<Players[]> => {
+    return this.playersRef.snapshotChanges()
+    .pipe(
       map((items: DocumentChangeAction<Players>[]): Players[] => {
         return items.map((item: DocumentChangeAction<Players>): Players => {
           return {
             name: item.payload.doc.data().name,
             score: item.payload.doc.data().score
-          }
-        })
-      })
-    )
+          };
+        });
+      }),
+      catchError(this.errorHandler)
+      )
+  }
+
+  getAllPlayers = () => {
+    let allPlayers;
+    allPlayers = this.db.collection('saved-games').get();
+    allPlayers.forEach(player => {
+      console.log(player.docs);
+    })
   }
 
   savePlayer = (player: Players) => {
