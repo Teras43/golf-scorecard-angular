@@ -43,6 +43,7 @@ export class CourseInfoComponent implements OnInit {
       this.data.holes[0].teeBoxes.forEach((v, i) => {
         this.setData.holeToIndex[v.teeType] = i
       });
+      console.log(this.data);
     })
   }
 
