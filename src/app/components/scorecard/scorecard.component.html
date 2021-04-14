@@ -7,7 +7,7 @@
     >
       Save Game
     </button>
-    <div class="teeChange" *ngIf="player$ | async as player">
+    <div class="teeChange" *ngIf="selectedTeeType">
       <mat-form-field id="teeDropDown">
         <mat-label>Change Tee:</mat-label>
         <mat-select
