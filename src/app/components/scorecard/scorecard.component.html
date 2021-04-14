@@ -1,100 +1,105 @@
 <div class="scorecardContainer">
   <mat-card class="scoreCard">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="playerService.updateGame(setData.players)"
-    >
-      Save Game
-    </button>
-    <div class="teeChange" *ngIf="selectedTeeType">
-      <mat-form-field id="teeDropDown">
-        <mat-label>Change Tee:</mat-label>
-        <mat-select
-          [(ngModel)]="selectedValue"
-          name="teeType"
-          (selectionChange)="setYardage()"
-        >
-          <mat-option
-            *ngFor="let teeType of selectedTeeType"
-            [value]="teeType.name"
+    <div class="buttonAndSelect">
+      <button
+        class="saveButton"
+        mat-raised-button
+        color="primary"
+        (click)="playerService.updateGame(setData.players)"
+      >
+        Save Game
+      </button>
+      <div class="teeChange" *ngIf="selectedTeeType">
+        <mat-form-field id="teeDropDown">
+          <mat-label>Change Tee:</mat-label>
+          <mat-select
+            [(ngModel)]="selectedValue"
+            name="teeType"
+            (selectionChange)="setYardage()"
           >
-            {{ teeType.viewName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-option
+              *ngFor="let teeType of selectedTeeType"
+              [value]="teeType.name"
+            >
+              {{ teeType.viewName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-    <table class="scorecardTable">
-      <tr>
-        <th>Hole</th>
-        <th>Par</th>
-        <th>HDCP</th>
-        <th>Yards</th>
-        <th *ngFor="let player of players">{{ player.name }}</th>
-      </tr>
-      <tr *ngFor="let hole of data.holes | slice: 0:9">
-        <td class="holeCell">{{ hole.hole }}</td>
-        <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
-        <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
-        <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
-        <td *ngFor="let player of players">
-          <input
-            class="playerInput"
-            (blur)="addScore(player.name, $event.target.value, hole.hole)"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>Out</td>
-        <td>{{ outTotalPar }}</td>
-        <td>Out</td>
-        <td>{{ outTotalYards }}</td>
-        <td *ngFor="let player of players">
-          <input
-            value="{{ player.score.outTotal }}"
-            class="playerInput"
-            disabled
-          />
-        </td>
-      </tr>
-      <tr *ngFor="let hole of data.holes | slice: 9:18">
-        <td class="holeCell">{{ hole.hole }}</td>
-        <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
-        <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
-        <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
-        <td *ngFor="let player of players">
-          <input
-            class="playerInput"
-            (blur)="addScore(player.name, $event.target.value, hole.hole)"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>In</td>
-        <td>{{ inTotalPar }}</td>
-        <td>In</td>
-        <td>{{ inTotalYards }}</td>
-        <td *ngFor="let player of players">
-          <input
-            value="{{ player.score.inTotal }}"
-            class="playerInput"
-            disabled
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td>{{ outTotalPar + inTotalPar }}</td>
-        <td>Total</td>
-        <td>{{ outTotalYards + inTotalYards }}</td>
-        <td *ngFor="let player of players">
-          <input
-            value="{{ player.score.total }}"
-            class="playerInput"
-            disabled
-          />
-        </td>
-      </tr>
-    </table>
+    <div class="scoreCardDiv">
+      <table class="scorecardTable">
+        <tr>
+          <th>Hole</th>
+          <th>Par</th>
+          <th>HDCP</th>
+          <th>Yards</th>
+          <th *ngFor="let player of players">{{ player.name }}</th>
+        </tr>
+        <tr *ngFor="let hole of data.holes | slice: 0:9">
+          <td class="holeCell">{{ hole.hole }}</td>
+          <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
+          <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
+          <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
+          <td *ngFor="let player of players">
+            <input
+              class="playerInput"
+              (blur)="addScore(player.name, $event.target.value, hole.hole)"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Out</td>
+          <td>{{ outTotalPar }}</td>
+          <td>Out</td>
+          <td>{{ outTotalYards }}</td>
+          <td *ngFor="let player of players">
+            <input
+              value="{{ player.score.outTotal }}"
+              class="playerInput"
+              disabled
+            />
+          </td>
+        </tr>
+        <tr *ngFor="let hole of data.holes | slice: 9:18">
+          <td class="holeCell">{{ hole.hole }}</td>
+          <td class="parCell">{{ hole.teeBoxes[0].par }}</td>
+          <td class="hcpCell">{{ hole.teeBoxes[0].hcp }}</td>
+          <td class="yardCell">{{ hole.teeBoxes[teeIndex].yards }}</td>
+          <td *ngFor="let player of players">
+            <input
+              class="playerInput"
+              (blur)="addScore(player.name, $event.target.value, hole.hole)"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>In</td>
+          <td>{{ inTotalPar }}</td>
+          <td>In</td>
+          <td>{{ inTotalYards }}</td>
+          <td *ngFor="let player of players">
+            <input
+              value="{{ player.score.inTotal }}"
+              class="playerInput"
+              disabled
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ outTotalPar + inTotalPar }}</td>
+          <td>Total</td>
+          <td>{{ outTotalYards + inTotalYards }}</td>
+          <td *ngFor="let player of players">
+            <input
+              value="{{ player.score.total }}"
+              class="playerInput"
+              disabled
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
   </mat-card>
 </div>
