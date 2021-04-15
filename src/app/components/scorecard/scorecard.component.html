@@ -1,14 +1,6 @@
 <div class="scorecardContainer">
   <mat-card class="scoreCard">
     <div class="buttonAndSelect">
-      <button
-        class="saveButton"
-        mat-raised-button
-        color="primary"
-        (click)="playerService.updateGame(setData.players)"
-      >
-        Save Game
-      </button>
       <div class="teeChange" *ngIf="selectedTeeType">
         <mat-form-field id="teeDropDown">
           <mat-label>Change Tee:</mat-label>
@@ -26,6 +18,14 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <button
+        class="saveButton"
+        mat-raised-button
+        color="primary"
+        (click)="playerService.updateGame(setData.players)"
+      >
+        Save Game
+      </button>
     </div>
     <div class="scoreCardDiv">
       <table class="scorecardTable">

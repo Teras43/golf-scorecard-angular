@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Course } from 'src/app/interfaces';
 import { ApiDataService } from '../../services/api-data.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CourseSelectionComponent implements OnInit {
   courses: Course[] = []
+  public screenWidth: any;
 
   constructor(
     private apiData: ApiDataService,
@@ -20,6 +21,7 @@ export class CourseSelectionComponent implements OnInit {
     this.apiData.getApiData().subscribe(res => {
       this.courses = res.courses
     })
+    this.screenWidth = window.innerWidth;
   }
 
   selectCourse(courseId) {
@@ -32,5 +34,10 @@ export class CourseSelectionComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth = window.innerWidth;
   }
 }

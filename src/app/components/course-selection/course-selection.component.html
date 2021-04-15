@@ -1,5 +1,8 @@
 <div class="courseContainer">
   <mat-card class="coursesCard" *ngIf="isLoaded()">
+    <div class="selectCourseText" *ngIf="screenWidth >= 1075">
+      Select Course!
+    </div>
     <div *ngFor="let course of courses" class="courseDiv">
       <img src="{{ course.image }}" (click)="selectCourse(course.id)" />
       <div class="courseName">
