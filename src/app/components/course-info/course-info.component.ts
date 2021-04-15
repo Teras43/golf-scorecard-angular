@@ -31,10 +31,6 @@ export class CourseInfoComponent implements OnInit {
     private db: AngularFireService
   ) { }
 
-  // vvv IMPORTANT vvv
-  // Issue when loading one of first two courses, then go back and load last course, display of "Pro" yardage is incorrect.
-  // ^^^ IMPORTANT ^^^
-
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get("id");
     this.apiData.getSingleCourse(this.id).subscribe(res => {
@@ -43,7 +39,6 @@ export class CourseInfoComponent implements OnInit {
       this.data.holes[0].teeBoxes.forEach((v, i) => {
         this.setData.holeToIndex[v.teeType] = i
       });
-      console.log(this.data);
     })
   }
 

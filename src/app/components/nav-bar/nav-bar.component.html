@@ -1,29 +1,15 @@
 <div class="navbarContainer">
   <mat-toolbar>
     <div class="buttonDiv">
-      <button mat-icon-button (click)="goBack()">
-        <mat-icon>keyboard_backspace</mat-icon>
+      <button mat-icon-button (click)="goHome()">
+        <mat-icon>home</mat-icon>
       </button>
     </div>
     <div class="appNameDiv">
       <div>Golf Scorecard</div>
     </div>
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      aria-label="Example icon-button with a menu"
-    >
-      <mat-icon>more_vert</mat-icon>
+    <button mat-icon-button routerLink="./saved-games">
+      <mat-icon>save</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="./saved-games">
-        <mat-icon>save</mat-icon>
-        <span>Saved Games</span>
-      </button>
-      <button mat-menu-item routerLink="./course-selection">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
-      </button>
-    </mat-menu>
   </mat-toolbar>
 </div>

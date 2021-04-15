@@ -1,5 +1,5 @@
 <div class="scorecardContainer">
-  <mat-card class="scoreCard">
+  <mat-card class="scoreCard" *ngIf="isLoaded()">
     <div class="buttonAndSelect">
       <div class="teeChange" *ngIf="selectedTeeType">
         <mat-form-field id="teeDropDown">
@@ -102,4 +102,7 @@
       </table>
     </div>
   </mat-card>
+  <div *ngIf="!isLoaded()" class="spinnerDiv">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

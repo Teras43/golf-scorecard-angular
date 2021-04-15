@@ -6,6 +6,38 @@
 
     table {
       width: 100%;
+
+      .mat-column-select {
+        width: 30px;
+      }
+
+      .mat-column-gameId {
+        font-size: 12px;
+        width: 80px;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+      }
+
+      .mat-column-position {
+        width: 30px;
+        text-align: center;
+      }
+
+      .mat-column-players {
+        width: 30px;
+        text-align: center;
+      }
+
+      .totalScoreCell {
+        text-align: center;
+      }
+
+      .mat-column-totalScore {
+        width: 100px;
+        text-align: center;
+      }
     }
 
     .spinnerDiv {
@@ -16,14 +48,4 @@
       align-items: center;
     }
   }
-}
-
-/* Column Widths */
-.mat-column-number,
-.mat-column-state {
-  max-width: 64px;
-}
-
-.mat-column-created {
-  max-width: 124px;
 }

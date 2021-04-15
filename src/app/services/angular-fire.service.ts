@@ -19,6 +19,7 @@ export class AngularFireService {
     this.players = this.playersRef.valueChanges();
   }
   gameId: string
+  firebaseIds = [];
 
   private errorHandler(error) {
     console.log(error);
@@ -43,14 +44,13 @@ export class AngularFireService {
   getAllPlayers = async (): Promise<any> => {
     await this.db.collection("saved-games").get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        return this.gameData.push(doc.data());
+        this.firebaseIds.push(doc.id);
+        this.gameData.push({
+          id: doc.id,
+          data: doc.data()
+        })
       });
-  });
-    // let allPlayers;
-    // allPlayers = this.db.collection('saved-games').ref.get();
-    // allPlayers.forEach(player => {
-    //   console.log(player);
-    // })
+    });
   }
 
   savePlayer = (player: Players) => {
@@ -64,4 +64,14 @@ export class AngularFireService {
   updateGame = (players: Players[]) => {
     this.db.collection('saved-games').doc(this.gameId).set({players})
   }
+
+  deleteSelected = (firebaseId) => {
+    firebaseId.forEach(id => {
+      this.playersRef.doc(id).delete()
+        .catch(error => console.log('Delete error: ', error))
+        .then(() => {
+          location.reload();
+        });
+      })
+  };
 }

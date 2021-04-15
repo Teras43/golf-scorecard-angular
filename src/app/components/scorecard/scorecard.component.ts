@@ -64,16 +64,23 @@ export class ScorecardComponent implements OnInit {
   constructor(
     private getData: DataShareService,
     public setData: DataShareService,
-    public playerService: AngularFireService
+    public playerService: AngularFireService,
   ) { }
 
   ngOnInit(): void {
     this.data = this.getData.getData();
-    console.log(this.data)
     this.getTeeTypes();
     this.setYardage();
     this.getTotalPar();
   }
+
+  isLoaded = (): boolean => {
+    if (this.data === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   savePlayer = (player) => {
     this.playerService.savePlayer(player);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,12 +9,18 @@ import { Location } from '@angular/common';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(public location: Location) { }
+  constructor(
+    public location: Location,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  goBack(): void {
-    this.location.back();
+  goHome = () => {
+    this.router.navigate(['./course-selection'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 }
