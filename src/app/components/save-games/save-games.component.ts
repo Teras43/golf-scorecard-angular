@@ -16,7 +16,6 @@ const TABLE_DATA: PlayerTableInterface[] = [
 })
 export class SaveGamesComponent implements OnInit {
   public players$: Observable<Players[]>;
-  gameData;
   displayedColumns: string[] = ['position', 'players', 'totalScore'];
   dataSource = TABLE_DATA;
   selection = new SelectionModel<PlayerTableInterface>(true, []);
@@ -32,9 +31,8 @@ export class SaveGamesComponent implements OnInit {
     let players2;
     let players3;
     let players4;
-    this.playersService.players.subscribe(data => {
-      this.gameData = data;
-      this.gameData.forEach(game => {
+    this.playersService.getAllPlayers().then(res => {
+      this.playersService.gameData.forEach(game => {
         players1 = game.players[0];
         players2 = game.players[1];
         players3 = game.players[2];
@@ -53,15 +51,15 @@ export class SaveGamesComponent implements OnInit {
           }
         TABLE_DATA.push({'position': this.positionNum, 'players': game.players.length, 'totalScore': `${playerScores}`})
         this.positionNum += 1
-      })
+      });
     });
   }
 
   isLoaded = (): boolean => {
-    if (this.dataSource.length === 0) {
-      return false;
-    } else {
+    if (this.dataSource.length !== 0) {
       return true;
+    } else {
+      return false;
     }
   }
   

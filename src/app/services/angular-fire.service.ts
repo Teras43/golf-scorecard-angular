@@ -9,6 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class AngularFireService {
   players: Observable<any>;
+  gameData = [];
   private playersRef: AngularFirestoreCollection<Players>;
 
   constructor(
@@ -39,12 +40,17 @@ export class AngularFireService {
       )
   }
 
-  getAllPlayers = () => {
-    let allPlayers;
-    allPlayers = this.db.collection('saved-games').get();
-    allPlayers.forEach(player => {
-      console.log(player.docs);
-    })
+  getAllPlayers = async (): Promise<any> => {
+    await this.db.collection("saved-games").get().toPromise().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        return this.gameData.push(doc.data());
+      });
+  });
+    // let allPlayers;
+    // allPlayers = this.db.collection('saved-games').ref.get();
+    // allPlayers.forEach(player => {
+    //   console.log(player);
+    // })
   }
 
   savePlayer = (player: Players) => {

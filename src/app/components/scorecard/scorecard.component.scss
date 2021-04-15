@@ -24,8 +24,13 @@
       justify-content: center;
       height: 95%;
 
+      @media (min-width: 850px) {
+        width: 25%;
+      }
+
       .scorecardTable {
         height: 95%;
+        justify-content: center;
       }
 
       th {

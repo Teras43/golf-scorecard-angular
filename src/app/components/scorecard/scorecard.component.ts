@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataShareService } from 'src/app/services/data-share.service';
 import { Players, teeTypes } from '../../interfaces';
@@ -10,6 +9,7 @@ import { AngularFireService } from '../../services/angular-fire.service';
   templateUrl: './scorecard.component.html',
   styleUrls: ['./scorecard.component.scss']
 })
+
 export class ScorecardComponent implements OnInit {
   public data = undefined;
   public selectedTeeType;
