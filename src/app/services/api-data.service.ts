@@ -21,6 +21,6 @@ export class ApiDataService {
   )
 
   getSingleCourse = (courseId): Observable<CourseReturnData> => (
-    this.http.get<CourseReturnData>(this.allCourses + '/' + courseId, { 'headers': this.headers })
+    this.http.get<CourseReturnData>(this.allCourses + '/' + courseId, { 'headers': this.headers, 'withCredentials': false })
   )
 }
