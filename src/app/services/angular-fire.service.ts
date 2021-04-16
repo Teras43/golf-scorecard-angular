@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
 import { Players } from '../interfaces';
-import { from, Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { DataShareService } from './data-share.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AngularFireService {
 
   constructor(
     private db: AngularFirestore,
+    public dataShare: DataShareService
   ) { 
     this.playersRef = this.db.collection<Players>('saved-games');
     this.players = this.playersRef.valueChanges();
@@ -66,13 +68,12 @@ export class AngularFireService {
 
   deleteSelected = (firebaseId) => {
     firebaseId.forEach((id, index, array) => {
-      console.log(array);
       this.playersRef.doc(id).delete()
         .catch(error => console.log('Delete error: ', error))
         .then(async () => {
           this.deletedGames++
           if (this.deletedGames === array.length) {
-            await location.reload();
+            await this.dataShare.goHome();
           }
         })
     })

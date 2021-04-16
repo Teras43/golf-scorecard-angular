@@ -5,7 +5,6 @@ import { AngularFireService } from '../../services/angular-fire.service';
 import { PlayerTableInterface } from 'src/app/interfaces';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { variable } from '@angular/compiler/src/output/output_ast';
 
 const TABLE_DATA: PlayerTableInterface[] = [
 
