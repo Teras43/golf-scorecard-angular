@@ -9,7 +9,7 @@ import { CourseReturnData } from '../interfaces';
 })
 export class ApiDataService {
 
-  allCourses = 'http://golf-courses-api.herokuapp.com/courses';
+  allCourses = 'https://golf-courses-api.herokuapp.com/courses';
 
   headers = new HttpHeaders()
     .set('content-type', 'application/json');
