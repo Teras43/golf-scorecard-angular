@@ -1,10 +1,12 @@
 .scorecardContainer {
+  display: flex;
+  justify-content: center;
   height: 90%;
   overflow: scroll;
 
   .scoreCard {
     height: 100%;
-    max-width: 100%;
+    width: 100%;
     font-size: 14px;
     overflow: scroll;
 
@@ -23,9 +25,11 @@
       display: flex;
       justify-content: center;
       height: 95%;
+      margin: auto;
+      margin-top: 10px;
 
       @media (min-width: 850px) {
-        width: 25%;
+        max-width: 1000px;
       }
 
       .scorecardTable {

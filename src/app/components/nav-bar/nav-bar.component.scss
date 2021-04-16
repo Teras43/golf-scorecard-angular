@@ -5,11 +5,20 @@
 
   .mat-toolbar {
     display: flex;
-    width: 100%;
-    color: #e1e2e3;
+    justify-content: center;
     background-color: #43515b;
     border-bottom: 2px solid black;
-    justify-content: space-between;
+
+    .toolbarBtn {
+      display: flex;
+      justify-content: center;
+      color: #e1e2e3;
+      justify-content: space-between;
+
+      @media (min-width: 1000px) {
+        width: 1000px;
+      }
+    }
   }
 
   .material-icons {

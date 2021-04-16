@@ -1,15 +1,17 @@
 <div class="navbarContainer">
   <mat-toolbar>
-    <div class="buttonDiv">
-      <button mat-icon-button (click)="goHome()">
-        <mat-icon>home</mat-icon>
+    <div class="toolbarBtn">
+      <div class="buttonDiv">
+        <button mat-icon-button (click)="goHome()">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+      <div class="appNameDiv">
+        <div>Golf Scorecard</div>
+      </div>
+      <button mat-icon-button routerLink="./saved-games">
+        <mat-icon>save</mat-icon>
       </button>
     </div>
-    <div class="appNameDiv">
-      <div>Golf Scorecard</div>
-    </div>
-    <button mat-icon-button routerLink="./saved-games">
-      <mat-icon>save</mat-icon>
-    </button>
   </mat-toolbar>
 </div>

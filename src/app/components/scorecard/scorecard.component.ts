@@ -14,7 +14,6 @@ export class ScorecardComponent implements OnInit {
   public data = undefined;
   public selectedTeeType;
   public teeIndex;
-  player$: Observable<Players>;
   players = this.getData.players;
   outTotalYards = 0;
   inTotalYards = 0;

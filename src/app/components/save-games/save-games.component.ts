@@ -61,7 +61,7 @@ export class SaveGamesComponent implements OnInit {
   }
 
   deleteSelectedFn = () => {
-    if (this.selection.selected.length >= 1) {
+    if (this.selection.selected.length !== 0) {
       this.selection.selected.forEach(selection => {
         this.deleteIds.push(selection.gameId);
       });
@@ -71,7 +71,7 @@ export class SaveGamesComponent implements OnInit {
         this.deleteIds.slice(index, 1)
       });
     } else {
-      return
+      return;
     }
   }
 
