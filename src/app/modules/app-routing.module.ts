@@ -6,11 +6,11 @@ import { SaveGamesComponent } from '../components/save-games/save-games.componen
 import { ScorecardComponent } from '../components/scorecard/scorecard.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'course-selection', pathMatch: 'full' },
   { path: 'course-selection', component: CourseSelectionComponent },
   { path: 'course-info/:id', component: CourseInfoComponent },
   { path: 'scorecard/:id', component: ScorecardComponent },
   { path: 'saved-games', component: SaveGamesComponent },
-  { path: '', redirectTo: 'course-selection', pathMatch: 'full' }
 ];
 
 @NgModule({
