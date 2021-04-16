@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Players } from '../interfaces';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { DataShareService } from './data-share.service'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AngularFireService {
 
   constructor(
     private db: AngularFirestore,
-    public dataShare: DataShareService
+    public router: Router
   ) { 
     this.playersRef = this.db.collection<Players>('saved-games');
     this.players = this.playersRef.valueChanges();
@@ -73,7 +73,10 @@ export class AngularFireService {
         .then(async () => {
           this.deletedGames++
           if (this.deletedGames === array.length) {
-            await this.dataShare.goHome();
+            await this.router.navigate([''])
+              .then(() => {
+                window.location.reload();
+              });
           }
         })
     })
