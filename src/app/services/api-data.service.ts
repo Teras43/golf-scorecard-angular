@@ -17,7 +17,7 @@ export class ApiDataService {
   constructor(private http: HttpClient) { }
 
   getApiData = (): Observable<ApiReturnData> => (
-    this.http.get<ApiReturnData>(this.allCourses, { 'headers': this.headers })
+    this.http.get<ApiReturnData>(this.allCourses, { 'headers': this.headers, 'withCredentials': false })
   )
 
   getSingleCourse = (courseId): Observable<CourseReturnData> => (
