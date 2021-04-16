@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { DataShareService } from '../../services/data-share.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,16 +11,9 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     public location: Location,
-    private router: Router
+    public dataShare: DataShareService
   ) { }
 
   ngOnInit(): void {
-  }
-
-  goHome = () => {
-    this.router.navigate(['./course-selection'])
-    .then(() => {
-      window.location.reload();
-    });
   }
 }

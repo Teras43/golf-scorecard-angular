@@ -14,7 +14,7 @@ export class ScorecardComponent implements OnInit {
   public data = undefined;
   public selectedTeeType;
   public teeIndex;
-  players = this.getData.players;
+  players = this.dataShare.players;
   outTotalYards = 0;
   inTotalYards = 0;
   outTotalPar = 0;
@@ -61,13 +61,12 @@ export class ScorecardComponent implements OnInit {
   ]
 
   constructor(
-    private getData: DataShareService,
-    public setData: DataShareService,
+    public dataShare: DataShareService,
     public playerService: AngularFireService,
   ) { }
 
   ngOnInit(): void {
-    this.data = this.getData.getData();
+    this.data = this.dataShare.getData();
     this.getTeeTypes();
     this.setYardage();
     this.getTotalPar();
@@ -103,40 +102,46 @@ export class ScorecardComponent implements OnInit {
         }
       })
     }
-    this.data.holes.forEach((i, val) => {
-      if (val < 9) {
-        this.outTotalYards += i.teeBoxes[this.teeIndex].yards;
-      } else if (val > 8 && val < 18) {
-        this.inTotalYards += i.teeBoxes[this.teeIndex].yards;
-      }
-    })
+    if(this.data !== undefined) {
+      this.data.holes.forEach((i, val) => {
+        if (val < 9) {
+          this.outTotalYards += i.teeBoxes[this.teeIndex].yards;
+        } else if (val > 8 && val < 18) {
+          this.inTotalYards += i.teeBoxes[this.teeIndex].yards;
+        }
+      })
+    }
   }
 
   getTeeTypes = (): any => {
-    if (this.data.holes[0].teeBoxes[0].teeType === "pro") {
-      this.selectedTeeType = this.teeTypesPro;
-      this.selectedValue = "pro";
-    } else {
-      this.selectedTeeType = this.teeTypesNoPro;
-      this.selectedValue = "champion";
+    if (this.data !== undefined) {
+      if (this.data.holes[0].teeBoxes[0].teeType === "pro") {
+        this.selectedTeeType = this.teeTypesPro;
+        this.selectedValue = "pro";
+      } else {
+        this.selectedTeeType = this.teeTypesNoPro;
+        this.selectedValue = "champion";
+      }
     }
   }
 
   getTotalPar = (): any => {
-    this.data.holes.forEach((hole, index) => {
-      if (index < 9) {
-        this.outTotalPar += hole.teeBoxes[0].par;
-      } else {
-        this.inTotalPar += hole.teeBoxes[0].par;
-      }
-    })
+    if (this.data !== undefined) {
+      this.data.holes.forEach((hole, index) => {
+        if (index < 9) {
+          this.outTotalPar += hole.teeBoxes[0].par;
+        } else {
+          this.inTotalPar += hole.teeBoxes[0].par;
+        }
+      })
+    }
   }
 
   addScore = (playerName, event, holeNum): any => {
     if (event === "") {
       event = 0;
     }
-    this.setData.players.forEach((name) => {
+    this.dataShare.players.forEach((name) => {
       let playerScores = Object.keys(name.score);
       if (playerName === name.name) {
         name.score.total = 0;

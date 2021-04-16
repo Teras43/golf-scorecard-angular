@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Players } from '../interfaces';
 
 type TeeTypes = {
@@ -16,7 +17,9 @@ export class DataShareService {
   players: Players[] = [];
   holeToIndex: TeeTypes = {} as TeeTypes;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   setData = (data: any): any => {
     this.data = data;
@@ -32,5 +35,12 @@ export class DataShareService {
     let total = 0
     this.data.holes.forEach(v => total += v.teeBoxes[index].yards)
     return total.toString()
+  }
+
+  goHome = () => {
+    this.router.navigate(['./course-selection'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 }

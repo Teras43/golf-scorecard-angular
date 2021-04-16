@@ -1,5 +1,6 @@
 .scorecardContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 90%;
   overflow: scroll;
@@ -35,11 +36,13 @@
       .scorecardTable {
         height: 95%;
         justify-content: center;
+        border-spacing: 0;
+        border-collapse: collapse;
       }
 
       th {
         border: 1px solid black;
-        margin: 0;
+        padding: 5px;
       }
 
       tr,
@@ -73,11 +76,24 @@
     }
   }
 
-  .spinnerDiv {
+  .notLoaded {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+
+    .buttonDiv {
+      margin-top: 100px;
+    }
+
+    .spinnerDiv {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

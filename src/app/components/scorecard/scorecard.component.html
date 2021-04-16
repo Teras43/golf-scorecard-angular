@@ -22,7 +22,7 @@
         class="saveButton"
         mat-raised-button
         color="primary"
-        (click)="playerService.updateGame(setData.players)"
+        (click)="playerService.updateGame(dataShare.players)"
       >
         Save Game
       </button>
@@ -102,7 +102,15 @@
       </table>
     </div>
   </mat-card>
-  <div *ngIf="!isLoaded()" class="spinnerDiv">
-    <mat-spinner></mat-spinner>
+  <div class="notLoaded" *ngIf="!isLoaded()">
+    <div class="buttonDiv">
+      <button mat-raised-button color="link" (click)="dataShare.goHome()">
+        <mat-icon>home</mat-icon>
+        <span>No data available, go home!</span>
+      </button>
+    </div>
+    <div class="spinnerDiv">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>
