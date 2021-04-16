@@ -6,7 +6,6 @@ import { SaveGamesComponent } from '../components/save-games/save-games.componen
 import { ScorecardComponent } from '../components/scorecard/scorecard.component';
 
 const routes: Routes = [
-  { path: 'course-selection', component: CourseSelectionComponent },
   { path: 'course-info/:id', component: CourseInfoComponent },
   { path: 'scorecard/:id', component: ScorecardComponent },
   { path: 'saved-games', component: SaveGamesComponent },

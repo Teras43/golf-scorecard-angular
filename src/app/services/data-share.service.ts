@@ -38,7 +38,7 @@ export class DataShareService {
   }
 
   goHome = () => {
-    this.router.navigate(['./course-selection'])
+    this.router.navigate([''])
     .then(() => {
       window.location.reload();
     });
