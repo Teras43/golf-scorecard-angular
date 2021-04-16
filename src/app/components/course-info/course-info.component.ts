@@ -42,6 +42,10 @@ export class CourseInfoComponent implements OnInit {
     })
   }
 
+  externalSiteNav = (site) => {
+    window.open(site, '_blank');
+  }
+
   nameVal(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       let error = null;
