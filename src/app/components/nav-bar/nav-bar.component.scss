@@ -3,7 +3,7 @@
   width: 100vw;
   margin: 0;
 
-  .mat-toolbar {
+  mat-toolbar {
     display: flex;
     justify-content: center;
     background-color: #43515b;
@@ -14,6 +14,8 @@
       justify-content: center;
       color: #e1e2e3;
       justify-content: space-between;
+      align-items: center;
+      margin-left: 20px;
 
       @media (min-width: 1000px) {
         width: 1000px;
