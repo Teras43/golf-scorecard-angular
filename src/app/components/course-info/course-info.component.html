@@ -15,9 +15,14 @@
       </div>
       <div class="holeCount">Holes: {{ data.holeCount }}</div>
       <img class="thumbnail" src="{{ data.thumbnail }}" />
-      <a mat-raised-button color="link" href="data.website" class="siteLink"
-        >Visit Site</a
+      <button
+        mat-raised-button
+        color="link"
+        (click)="externalSiteNav(data.website)"
+        class="siteLink"
       >
+        Visit Site
+      </button>
       <div class="teeTypeTitle">TeeTypes:</div>
       <div class="yardageContainer">
         <div class="teeTypes">
