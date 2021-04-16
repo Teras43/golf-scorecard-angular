@@ -75,6 +75,6 @@ export class AngularFireService {
             await location.reload();
           }
         })
-      })
+    })
   };
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataShareService } from 'src/app/services/data-share.service';
-import { Players, teeTypes } from '../../interfaces';
+import { teeTypes } from '../../interfaces';
 import { AngularFireService } from '../../services/angular-fire.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class ScorecardComponent implements OnInit {
   outTotalPar = 0;
   inTotalPar = 0;
   selectedValue: string;
+  durationInSeconds = 5;
   teeTypesPro: teeTypes[] = [
     {
       index: 0,
@@ -63,6 +64,7 @@ export class ScorecardComponent implements OnInit {
   constructor(
     public dataShare: DataShareService,
     public playerService: AngularFireService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -71,6 +73,27 @@ export class ScorecardComponent implements OnInit {
     this.setYardage();
     this.getTotalPar();
   }
+
+  snackBarCheck = (playerName, total) => {
+    if(total <= this.outTotalPar + this.inTotalPar) {
+      this.goodSnackBar(playerName);
+    } else {
+      this.badSnackBar(playerName);
+    }
+  }
+
+  goodSnackBar = (playerName) => {
+    this._snackBar.open(`${playerName} has a good swing!`, "Time to go pro!", {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
+  badSnackBar = (playerName) => {
+    this._snackBar.open(`${playerName} work on your swing.`, "Keep practicing!", {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
 
   isLoaded = (): boolean => {
     if (this.data === undefined) {
@@ -157,6 +180,11 @@ export class ScorecardComponent implements OnInit {
           }
         })
         name.score.total = name.score.outTotal + name.score.inTotal;
+        if (Object.values(name.score).includes(0)) {
+          return
+        } else {
+          this.snackBarCheck(name.name, name.score.total);
+        }
       }
     })
   }

@@ -10,7 +10,14 @@
     .deleteBtnDiv {
       display: flex;
       justify-content: left;
-      width: 1000px;
+
+      @media (min-width: 700px) {
+        width: 500px;
+      }
+
+      @media (min-width: 1000px) {
+        width: 1000px;
+      }
 
       .deleteSelectedBtn {
         width: 9em;
@@ -22,9 +29,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
     }
 
     table {
+      @media (min-width: 700px) {
+        width: 500px;
+      }
+
       @media (min-width: 1000px) {
         width: 1000px;
       }
